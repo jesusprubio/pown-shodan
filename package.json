@@ -1,0 +1,64 @@
+{
+  "name": "pown-shodan",
+  "version": "0.1.0-beta.0",
+  "description": "Pownage guaranteed",
+  "main": "index.js",
+  "scripts": {
+    "ip": "POWN_ROOT=./ pown ip",
+    "test": "tap test",
+    "lint": "eslint .",
+    "dep-ok": "depcheck --ignores=release-it",
+    "dep-sec": "nsp check",
+    "dep-old": "ncu",
+    "posttest": "npm run lint && npm run dep-ok && npm run dep-sec",
+    "release": "npm test && release-it",
+    "release-minor": "npm test && release-it minor",
+    "release-major": "npm test && release-it major"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jesusprubio/pown-shodan.git"
+  },
+  "keywords": [
+    "exploit",
+    "framework",
+    "shodan",
+    "host",
+    "map",
+    "iot"
+  ],
+  "author": "Jesús Pérez <jesusprubio@fsf.org>",
+  "contributors": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jesusprubio/ragnar/issues"
+  },
+  "homepage": "https://github.com/pownjs/pown#readme",
+  "pown": {
+    "commands": [
+      "./index.js"
+    ]
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "pown-logger": "^0.1.2",
+    "pown-validator": "github:jesusprubio/pown-validator#0.1.0-beta.0",
+    "shodan-client": "^3.0.3"
+  },
+  "devDependencies": {
+    "depcheck": "^0.6.4",
+    "eslint": "^3.6.0",
+    "eslint-config-airbnb-base": "^8.0.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-json": "^1.2.0",
+    "npm-check-updates": "^2.8.0",
+    "nsp": "^2.1.0",
+    "pown-cli": "^0.2.0",
+    "release-it": "^2.5.3",
+    "tap": "^8.0.1"
+  },
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  }
+}
