@@ -7,23 +7,12 @@
 
 'use strict';
 
-const net = require('net');
-
-const cli = require('shodan-client');
-const lodash = require('lodash');
-const logger = require('pown-logger');
-const validator = require('pown-validator');
-
-let pkgName = require('./package').name;
-
-
 // The huge timeout is because the API is really lazy.
 const defaults = { query: 'freepbx', timeout: 20000, pages: 1 };
-pkgName = pkgName.slice(5);
 
 
 exports.yargs = {
-  command: pkgName,
+  command: 'shodan',
   describe: 'Query for hosts, IP address or exploits to Shodan.',
 
   builder: {
@@ -58,7 +47,16 @@ exports.yargs = {
   },
 
   handler: (argv = {}) => {
-    logger.title(pkgName);
+    /* eslint-disable global-require */
+    const net = require('net');
+
+    const cli = require('shodan-client');
+    const lodash = require('lodash');
+    const logger = require('pown-logger');
+    const validator = require('pown-validator');
+    /* eslint-enable global-require */
+
+    logger.title(this.yargs.command);
 
     if (!argv.key) { throw new Error('The option "key" is mandatory'); }
 
